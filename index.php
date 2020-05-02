@@ -10,6 +10,7 @@
 	try {
 		spl_autoload_register(function (string $className) {
 			$classFilePath = __DIR__ . '/app/' . convertNamespaceToPath($className) . '.php';
+            $classFilePath = strtolower(pathinfo($classFilePath, PATHINFO_DIRNAME)) . '/' . pathinfo($classFilePath, PATHINFO_BASENAME);
 			require_once  $classFilePath;
 		});
 		
